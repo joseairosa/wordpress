@@ -1,0 +1,22 @@
+animegami_store_server:
+  image: joseairosa/wordpress:permissions
+  links:
+    - animegami_store_db:mysql
+  volumes:
+    - /Users/jairosa/projects/joseairosa/animegami.co.uk:/var/www/html
+  ports:
+    - 8080:80
+  dns: 8.8.8.8
+
+animegami_store_db:
+  image: mariadb
+  environment:
+    PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    MARIADB_MAJOR: 10.1
+    MARIADB_VERSION: 10.1.11+maria-1~jessie
+    MYSQL_ROOT_PASSWORD: ${ANIMEGAMI_DEV_MYSQL_ROOT_PASSWORD}
+    MYSQL_DATABASE: ${ANIMEGAMI_DEV_MYSQL_DATABASE}
+    MYSQL_USER: ${ANIMEGAMI_DEV_MYSQL_USER}
+    MYSQL_PASSWORD: ${ANIMEGAMI_DEV_MYSQL_PASSWORD}
+  ports:
+    - 33066:3306

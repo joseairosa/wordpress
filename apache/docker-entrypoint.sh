@@ -141,6 +141,8 @@ EOPHP
 		set_config 'WP_DEBUG' 1 boolean
 	fi
 
+	chmod -R 777 /var/www/html/wp-content
+
 	TERM=dumb php -- "$WORDPRESS_DB_HOST" "$WORDPRESS_DB_USER" "$WORDPRESS_DB_PASSWORD" "$WORDPRESS_DB_NAME" <<'EOPHP'
 <?php
 // database might not exist, so let's try creating it (just to be safe)
